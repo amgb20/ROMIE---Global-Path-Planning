@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TSPP Results</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        h1 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            width: 100%;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .image-container {
+            width: 48%;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .table-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .yes {
+            background-color: green;
+            color: white;
+            text-align: center;
+        }
+
+        .no {
+            background-color: rgb(255, 0, 0);
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TSPP Results</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'index' %}">TSPP Workshop</a></li>
+            <li><a href="{% url 'tspp_results' %}">TSPP Results</a></li>
+            <li><a href="{% url 'map' %}">Map</a></li>
+        </ul>
+    </nav>
+
+    <div class="image-container">
+        <h2>Path Algorithm Comparison</h2>
+        <img src="{% static 'nn_10x10.png' %}" alt="Nearest Neighbour Path Algorithm">
+        <img src="{% static 'two-opt_10x10.png' %}" alt="2-opt Path Algorithm 2">
+        <img src="{% static 'christofides_10x10.png' %}" alt="Christofides Path Algorithm">
+    </div>
+
+    <div class="image-container">
+        <h2>Time Complexity Comparison</h2>
+        <img src="{% static 'all_complexity.png' %}" alt="All Complexity">
+    </div>
+
+    <div class="table-container">
+        <h2>Results Table based on a 10x10 grid !!!!! ADD CPU and RAM graph and include in table -- Time not trueeeeeeeee</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Algorithm</th>
+                    <th>Cost for a 10x10 grid</th>
+                    <th>Time Complexity: Big O Notation</th>
+                    <th>Average Experimental time complexity (for a series of 1 to 100 points)</th>
+                    <th>Average Theorical time complexity for a mining applications (10,000 points)</th>
+                    <th>Choice of algorithm</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nearest Neighbour</td>
+                    <td>100</td>
+                    <td>O(n<sup>2</sup>)</td>
+                    <td>0.27 ms</td>
+                    <td>38 min</td>
+                    <td class="yes">Yes</td>
+                </tr>
+                <tr>
+                    <td>2-opt</td>
+                    <td>100</td>
+                    <td>O(n<sup>2</sup>)</td>
+                    <td>1.24 ms</td>
+                    <td>8.6 months</td>
+                    <td class="no">No</td>
+                </tr>
+                <tr>
+                    <td>Christofides</td>
+                    <td>100</td>
+                    <td>O(n<sup>3</sup>)</td>
+                    <td>2.24 ms</td>
+                    <td>3 h</td>
+                    <td class="no">No</td>
+                </tr>
+                <!-- Add more rows for other algorithms -->
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

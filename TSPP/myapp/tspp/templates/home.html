@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    {% load static %}
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        nav img {
+            max-height: 50px;
+        }
+
+        .robot-image {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Toggle menu styles */
+        .toggle-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #333;
+            padding: 20px;
+            text-align: right;
+            z-index: 1;
+        }
+
+        .toggle-menu a {
+            display: block;
+            color: #fff;
+            margin-bottom: 10px;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .toggle-menu a:hover {
+            text-decoration: underline;
+        }
+
+        .toggle-menu-button {
+            display: block;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .toggle-menu-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Animation styles */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+        }
+
+        .slideDown {
+            animation-name: slideDown;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <img src="{% static 'university-of-bath-logo.png' %}" alt="University Logo">
+        <h1>Welcome to the Individual Report</h1>
+        <img src="{% static 'PRlogo.png' %}" alt="Company Logo">
+    </nav>
+
+    <img class="robot-image" src="{% static 'General_Architecture.png' %}" alt="Robot Image">
+
+    <!-- Toggle menu button -->
+    <button class="toggle-menu-button">Menu</button>
+
+    <!-- Toggle menu -->
+    <div class="toggle-menu animated slideDown">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'index' %}">TSPP workshop</a>
+        <a href="{% url 'tspp_results' %}">TSPP Results</a>
+        <!-- add the map -->
+        <a href="{% url 'map' %}">Map</a>
+    </div>
+
+    <script>
+        // Toggle menu functionality
+        const toggleMenuButton = document.querySelector('.toggle-menu-button');
+        const toggleMenu = document.querySelector('.toggle-menu');
+
+        toggleMenuButton.addEventListener('click', () => {
+            toggleMenu.classList.toggle('slideDown');
+        });
+    </script>
+</body>
+
+</html>
+
+<!-- <nav>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'index' %}">Travelling Salesman Path Problem: Workshop</a></li>
+      <li><a href="{% url 'tspp_results' %}">Travelling Salesman Path Problem: Results</a></li>
+    </ul>
+  </nav>
+</body>
+</html> -->

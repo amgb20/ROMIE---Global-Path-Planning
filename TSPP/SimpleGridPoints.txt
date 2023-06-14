@@ -1,0 +1,6 @@
+This script positions the points as a square grid and the robot in the middle but is only allowed to follow the grid path
+
+It compares the different method uses:
+- NN
+- 2-pot
+- Christofides

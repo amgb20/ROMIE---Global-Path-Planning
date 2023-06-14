@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Travelling Salesman Problem Solver</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            margin: 20px 0;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .download-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-container h3 {
+            margin-top: 0;
+        }
+
+        .results-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            background-color: antiquewhite;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TSPP workshop</h1>
+
+    <!-- display menu settings-->
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'index' %}">TSPP Workshop</a></li>
+            <li><a href="{% url 'tspp_results' %}">TSPP Results</a></li>
+            <li><a href="{% url 'map' %}">Map</a></li>
+        </ul>
+    </nav>
+
+    <!-- Display features-->
+    <h2>Travelling Salesman Problem Solver</h2>
+    <div class="input-container">
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+    {% if result %}
+    <div class="results-container">
+        <h3>Results</h3>
+        <!-- Display the results as you need, assuming result is a tuple or list -->
+        <p>Cost: {{ result.1 }}</p>
+        <p>Time to execute the function: {{ result.2 }} seconds</p>
+    </div>
+
+    <div class="download-container">
+        <h3>Download</h3>
+        <p><a href="{% url 'download_path_csv' algorithm=algorithm Length=Length Width=Width %}"
+                download="{{ csv_filename }}">Download Global Path Planning Waypoints CSV</a></p>
+        <p><a href="{% url 'download_csv' algorithm=algorithm Length=Length Width=Width %}"
+                download="{{ csv_filename }}"> Download Time Complexity CSV</a></p>
+        <p><a href="{% url 'download_cpu_csv' algorithm=algorithm Length=Length Width=Width %}"
+                download="{{ csv_filename }}"> Download CPU usage CSV</a></p>
+    </div>
+    <div class="image-container">
+        Add the fact that there is a lifetime of the ronot
+        <p><img src="data:image/png;base64,{{ image_base64 }}" alt="Algorithm plot"></p>
+        <p><img src="data:image/png;base64,{{ complexity_plot_path }}" alt="Complexity plot"></p>
+    </div>
+
+    {% endif %}
+</body>
+
+</html>
