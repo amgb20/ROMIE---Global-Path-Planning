@@ -47,6 +47,8 @@ This website is also used at the moment as a playground to test the effect of di
 
 This repository contains a series of different TSP algorithms based on Google OR-Tools, Genetic Algorithms and Machine Learning Reinforcement Learning: Q-learning. 
 
+The aim is to build, run and compare the outputs to determine the best TSP algorithm for our project requirements. 
+
 # Details to run TSPP app
 Go into the TSPP/myapp directory and run
 ```bash
