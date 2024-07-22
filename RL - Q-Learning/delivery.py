@@ -381,6 +381,7 @@ def run_n_episodes(env,agent,name="training.gif",n_episodes=2000,render_each=100
         # print('total distance: ', total_distances)
 
         min_distance = min(total_distances)
+        min_distance_return = min(total_distances) * 100000
         print("Minimum total distance over 1000 episodes: ", min_distance*100000)
 
         
@@ -419,4 +420,4 @@ def run_n_episodes(env,agent,name="training.gif",n_episodes=2000,render_each=100
     # Save imgs as gif
     imageio.mimsave(name,imgs,duration=100)
 
-    return env,agent
+    return env,agent, min_distance_return, elapsed_time
